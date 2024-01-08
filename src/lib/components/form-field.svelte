@@ -14,13 +14,36 @@
 	type T = $$Generic<AnyZodObject | FormValidation>;
 	type Path = $$Generic<FormFieldName<T>>;
 
+	type $$Props = {
+		/**
+		 * The configuration object received as a slot
+		 * prop from the parent `<Form.Root />` element.
+		 */
+		config: Form<T>;
+
+		/**
+		 * The name of the field, which corresponds to the
+		 * path/property name in the schema.
+		 */
+		name: Path;
+
+		/**
+		 * A custom ID to use for the input element. If not
+		 * provided, one will be generated for you.
+		 */
+		inputId?: string;
+	};
+
 	export let config: Form<T>;
 	export let name: Path;
+	export let inputId: $$Props["inputId"] = undefined;
 
 	const attrStore: FieldAttrStore = writable({});
-	$: ({ errors, value, constraints } = formFieldProxy<T, Path>(config.form, name));
+	$: ({ errors, value, constraints, tainted } = formFieldProxy<T, Path>(config.form, name));
 
-	const ids = writable(createIds());
+	const ids = writable(createIds(inputId));
+
+	$: inputId !== undefined && ids.set(createIds(inputId));
 
 	$: ({ getFieldAttrs, actions, hasValidation, hasDescription, handlers, setValue } =
 		createFormField<T, Path>(name, attrStore, value, errors, ids));
@@ -33,8 +56,11 @@
 		hasDescription: $hasDescription
 	});
 
+	$: ({ value: _, ...groupAttrs } = inputAttrs);
+
 	$: attrs = {
 		input: inputAttrs,
+		group: groupAttrs,
 		label: {
 			for: $ids.input
 		},
@@ -50,17 +76,21 @@
 	const stores = {
 		errors,
 		value,
-		constraints
+		constraints,
+		tainted
+	};
+
+	$: slotProps = {
+		stores,
+		errors: $errors,
+		value: $value,
+		constraints: $constraints,
+		tainted: $tainted,
+		handlers,
+		attrs,
+		actions,
+		setValue
 	};
 </script>
 
-<slot
-	{stores}
-	errors={$errors}
-	value={$value}
-	constraints={$constraints}
-	{handlers}
-	{attrs}
-	{actions}
-	{setValue}
-/>
+<slot {...slotProps} />

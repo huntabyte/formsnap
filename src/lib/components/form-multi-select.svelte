@@ -12,6 +12,6 @@
 	};
 </script>
 
-<select {...$$restProps} bind:value={$value} {...attrs}>
+<select {...$$restProps} multiple bind:value={$value} {...attrs}>
 	<slot />
 </select>

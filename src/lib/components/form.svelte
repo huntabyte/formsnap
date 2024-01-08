@@ -267,30 +267,31 @@
 		"data-fs-form": "",
 		"data-fs-error": $errors ? "" : undefined
 	};
+
+	$: slotProps = {
+		config,
+		formValues: $formStore,
+		form: superFrm,
+		enhance,
+		allErrors: $allErrors,
+		delayed: $delayed,
+		errors: $errors,
+		reset,
+		submitting: $submitting,
+		tainted: $tainted,
+		timeout: $timeout,
+		validate,
+		posted: $posted,
+		fields,
+		formId: $formId,
+		restore,
+		capture,
+		message: $message
+	};
 </script>
 
 {#if asChild}
-	<slot
-		{config}
-		formValues={$formStore}
-		{formStore}
-		form={superFrm}
-		{enhance}
-		allErrors={$allErrors}
-		delayed={$delayed}
-		errors={$errors}
-		{reset}
-		submitting={$submitting}
-		tainted={$tainted}
-		timeout={$timeout}
-		{validate}
-		posted={$posted}
-		{fields}
-		formId={$formId}
-		{restore}
-		{capture}
-		message={$message}
-	/>
+	<slot {...slotProps} />
 {:else}
 	<form
 		method="POST"
@@ -303,28 +304,7 @@
 		on:reset
 		{...attrs}
 	>
-		<slot
-			{config}
-			{formStore}
-			formValues={$formStore}
-			form={superFrm}
-			{enhance}
-			{attrs}
-			allErrors={$allErrors}
-			delayed={$delayed}
-			errors={$errors}
-			{reset}
-			submitting={$submitting}
-			tainted={$tainted}
-			timeout={$timeout}
-			{validate}
-			posted={$posted}
-			{fields}
-			formId={$formId}
-			{restore}
-			{capture}
-			message={$message}
-		/>
+		<slot {...slotProps} />
 		{#if debug}
 			<SuperDebug data={$formStore} />
 		{/if}

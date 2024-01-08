@@ -27,6 +27,14 @@ export type Form<T extends FormValidation> = {
 
 export type Arrayable<T> = T | T[];
 
+export type ArrayKeys<T> = {
+	[K in keyof T]: T[K] extends any[] ? K : never;
+}[keyof T];
+
+export type ArrayProperties<T> = {
+	[K in keyof T]: T[K] extends any[] ? T[K] : never;
+};
+
 export type FormValidation = ZodValidation<AnyZodObject>;
 export type FormFieldName<T extends FormValidation> = FormPathLeaves<z.infer<T>>;
 

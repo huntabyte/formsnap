@@ -9,16 +9,20 @@ import Select from "./form-select.svelte";
 import Checkbox from "./form-checkbox.svelte";
 import Radio from "./form-radio.svelte";
 import Control from "./form-control.svelte";
+import MultiField from "./form-multi-field.svelte";
+import MultiSelect from "./form-multi-select.svelte";
 
 export {
 	Root,
 	Field,
+	MultiField,
 	Label,
 	Description,
 	Validation,
 	Input,
 	Textarea,
 	Select,
+	MultiSelect,
 	Checkbox,
 	Radio,
 	Control

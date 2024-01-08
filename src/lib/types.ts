@@ -70,7 +70,17 @@ export type ValidationProps = {
 } & HTMLAttributes<HTMLElement>;
 
 export type RadioProps = HTMLInputAttributes;
-export type SelectProps = HTMLSelectAttributes;
+
+type SingleSelectError<T> = T extends true
+	? "[FORMSNAP ERROR]: USE THE <Form.MultiSelect> COMPONENT INSTEAD DUE TO SVELTE 2-WAY BINDING LIMITATIONS"
+	: T;
+
+export type SelectProps<T extends boolean = boolean> = Omit<HTMLSelectAttributes, "multiple"> & {
+	multiple?: T extends boolean ? SingleSelectError<T> : T;
+};
+
+export type MultiSelectProps = Omit<HTMLSelectAttributes, "multiple">;
+
 export type TextareaProps = HTMLTextareaAttributes;
 export type LabelProps = HTMLLabelAttributes;
 

@@ -1,20 +1,20 @@
-import type { FormPathLeaves, UnwrapEffects, ZodValidation } from "sveltekit-superforms";
+import type { FormPath, ZodValidation } from "sveltekit-superforms";
 import type { AnyZodObject, z } from "zod";
-import { derived, get, writable, type Writable } from "svelte/store";
+import { get, writable, type Writable } from "svelte/store";
 import {
-	FORM_MULTIFIELD_CONTEXT,
+	FORM_FIELD_CONTEXT,
 	createFieldActions,
 	createFieldHandlers
 } from "@/lib/internal/index.js";
 import type { ErrorsStore, GetFieldAttrsProps } from "@/lib/internal/index.js";
 import type { CreateFormFieldReturn, FieldAttrStore, FieldContext, FieldIds } from "./types.js";
-import { getContext, hasContext, setContext } from "svelte";
+import { setContext } from "svelte";
 
-export const FORM_FIELD_CONTEXT = "FormField";
+export const FORM_MULTIFIELD_CONTEXT = "MultiField";
 
-export function createFormField<
+export function createMultiField<
 	T extends ZodValidation<AnyZodObject>,
-	Path extends FormPathLeaves<z.infer<UnwrapEffects<T>>>
+	Path extends FormPath<z.infer<T>>
 >(
 	name: Path,
 	attrStore: FieldAttrStore,
@@ -24,11 +24,6 @@ export function createFormField<
 ): CreateFormFieldReturn {
 	const hasValidation = writable(false);
 	const hasDescription = writable(false);
-	const multiFieldContext = writable<FieldContext | null>(null);
-	const isChildOfMultiField = derived(
-		multiFieldContext,
-		($multiFieldContext) => !!$multiFieldContext
-	);
 
 	const actions = createFieldActions({
 		ids,
@@ -59,28 +54,11 @@ export function createFormField<
 	};
 
 	setContext(FORM_FIELD_CONTEXT, context);
-
-	if (hasContext(FORM_MULTIFIELD_CONTEXT)) {
-		multiFieldContext.set(getContext<FieldContext>(FORM_MULTIFIELD_CONTEXT));
-	}
+	setContext(FORM_MULTIFIELD_CONTEXT, context);
 
 	function getFieldAttrs<T>(props: GetFieldAttrsProps<T>) {
+		const { val, errors, constraints, hasValidation, hasDescription } = props;
 		const $ids = get(ids);
-		const { errors, hasValidation, hasDescription, val, constraints } = props;
-		const $multiFieldContext = get(multiFieldContext);
-
-		if (get(isChildOfMultiField) && $multiFieldContext) {
-			const { attrStore } = $multiFieldContext;
-
-			const $attrStore = get(attrStore);
-			const attrs = {
-				...$attrStore,
-				name,
-				id: $ids.input,
-				value: val
-			} as const;
-			return attrs;
-		}
 		const describedBy = errors
 			? `${hasValidation ? $ids.validation : ""} ${hasDescription ? $ids.description : ""}`
 			: hasDescription

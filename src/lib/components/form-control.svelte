@@ -24,6 +24,7 @@
 	$: attrs = {
 		"data-fs-control": "",
 		"data-fs-error": $errors ? "" : undefined,
+		value: $attrStore.value,
 		...$attrStore
 	};
 </script>
