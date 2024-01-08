@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getForm, getFormField, type InputProps } from "$lib";
+	import { getForm, getFormField, type InputProps } from "$lib/index.js";
 	import type { HTMLInputTypeAttribute } from "svelte/elements";
 	import { dateProxy } from "sveltekit-superforms/client";
 

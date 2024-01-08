@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { getFormField } from "@/lib/index.js";
-	import type { RadioProps } from "../types.js";
+	import { getFormField, type RadioProps } from "$lib/index.js";
 
 	type $$Props = RadioProps;
 	const { actions, errors, attrStore } = getFormField();

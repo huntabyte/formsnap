@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { getFormField } from "@/lib/index.js";
-	import type { DescriptionProps } from "$lib";
+	import { getFormField, type DescriptionProps } from "$lib/index.js";
 
 	type $$Props = DescriptionProps;
 	export let tag = "p";

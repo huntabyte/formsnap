@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Form, type FormOptions } from "@/lib/index.js";
+	import { Form, type FormOptions } from "$lib/index.js";
 	import type { PageData } from "./$types.js";
 	import { simpleFormSchema } from "../schemas.js";
 	import { Button } from "@/components/ui/button/index.js";

@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { getFormField } from "@/lib/index.js";
-	import type { ControlProps } from "../types.js";
+	import { getFormField, type ControlProps } from "$lib/index.js";
 	import { hiddenInputStyles } from "../internal/style.js";
 
 	type $$Props = ControlProps;

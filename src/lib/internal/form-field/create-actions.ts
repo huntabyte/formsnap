@@ -1,5 +1,5 @@
 import { get, type Writable } from "svelte/store";
-import { effect, addEventListener, setAttributes } from "@/lib/internal/index.js";
+import { effect, addEventListener, setAttributes } from "$lib/internal/index.js";
 import type { CreateFieldActionsProps, FieldActions, FieldAttrStore, FieldIds } from "./types.js";
 
 export function createFieldActions(props: CreateFieldActionsProps): FieldActions {

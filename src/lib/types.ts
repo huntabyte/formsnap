@@ -6,7 +6,7 @@ import type {
 	FormFieldName,
 	FormInputEvent,
 	SuperFormOptions
-} from "@/lib/internal/types.js";
+} from "$lib/internal/types.js";
 import type {
 	HTMLAttributes,
 	HTMLFormAttributes,

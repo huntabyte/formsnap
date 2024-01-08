@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { getFormField } from "@/lib/index.js";
-	import type { TextareaProps } from "../types.js";
+	import { getFormField, type TextareaProps } from "$lib/index.js";
 
 	type $$Props = TextareaProps;
 	const { actions, errors, attrStore } = getFormField();

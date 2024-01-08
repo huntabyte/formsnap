@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { getFormField } from "@/lib/index.js";
-	import type { ValidationProps } from "../types.js";
+	import { getFormField, type ValidationProps } from "$lib/index.js";
 
 	type $$Props = ValidationProps;
 	export let tag = "p";

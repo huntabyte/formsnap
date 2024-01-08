@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getForm } from "@/lib";
+	import { getForm } from "$lib/index.js";
 
 	const { delayed } = getForm();
 </script>

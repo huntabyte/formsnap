@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
 	import type { UnwrapEffects, ZodValidation } from "sveltekit-superforms";
 	import type { AnyZodObject } from "zod";
-	import type { Form } from "@/lib/internal/index.js";
+	import type { Form } from "$lib/internal/index.js";
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	type Validation = ZodValidation<AnyZodObject>;
@@ -10,11 +10,11 @@
 </script>
 
 <script lang="ts" generics="T extends Validation = Validation, M = any">
-	import { FORM_FIELD_SCHEMA } from "../helpers/get-form-schema";
+	import { FORM_FIELD_SCHEMA } from "../helpers/get-form-schema.js";
 	import type { HTMLFormAttributes } from "svelte/elements";
 	import { setContext } from "svelte";
-	import type { FormEvents, FormOptions } from "@/lib/types.js";
-	import { FORM_CONTEXT } from "@/lib/internal/index.js";
+	import type { FormEvents, FormOptions } from "$lib/types.js";
+	import { FORM_CONTEXT } from "$lib/internal/index.js";
 	import { superForm, type SuperForm } from "sveltekit-superforms/client";
 	import SuperDebug from "sveltekit-superforms/client/SuperDebug.svelte";
 	import type { SuperValidated } from "sveltekit-superforms";

@@ -2,7 +2,7 @@
 import type { FormPathLeaves, UnwrapEffects, ZodValidation } from "sveltekit-superforms";
 import type { SuperForm, formFieldProxy } from "sveltekit-superforms/client";
 import type { AnyZodObject, z } from "zod";
-import type { SuperFormOptions, Validators as SuperFormValidators } from "./super-form-patch";
+import type { SuperFormOptions, Validators as SuperFormValidators } from "./super-form-patch.js";
 import type { ActionResult, Page } from "@sveltejs/kit";
 import type { Writable } from "svelte/store";
 

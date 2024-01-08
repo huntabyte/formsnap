@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { getFormField } from "@/lib/index.js";
-	import type { SelectProps } from "../types.js";
+	import { getFormField, type SelectProps } from "$lib/index.js";
 
 	type $$Props = SelectProps;
 	const { actions, errors, attrStore } = getFormField();

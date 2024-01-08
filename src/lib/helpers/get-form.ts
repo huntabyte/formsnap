@@ -1,5 +1,5 @@
 import { getContext } from "svelte";
-import { FORM_CONTEXT, type FormValidation, type FormContext } from "@/lib/internal/index.js";
+import { FORM_CONTEXT, type FormValidation, type FormContext } from "$lib/internal/index.js";
 /**
  * Get the form context from the current component.
  * Must be called within component initialization that is

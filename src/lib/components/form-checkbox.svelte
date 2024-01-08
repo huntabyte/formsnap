@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { getFormField } from "@/lib/index.js";
-	import type { CheckboxProps } from "../types.js";
+	import { getFormField, type CheckboxProps } from "$lib/index.js";
 
 	type $$Props = CheckboxProps;
 	const { actions, errors, attrStore } = getFormField();

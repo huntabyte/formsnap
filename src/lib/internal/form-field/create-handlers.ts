@@ -2,7 +2,7 @@ import {
 	isHTMLInputElement,
 	isHTMLSelectElement,
 	isHTMLTextareaElement
-} from "@/lib/internal/index.js";
+} from "$lib/internal/index.js";
 import type { FieldHandlers, FieldValueSetter } from "./types.js";
 
 /**

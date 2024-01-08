@@ -1,8 +1,8 @@
 import type { FormPathLeaves, UnwrapEffects, ZodValidation } from "sveltekit-superforms";
 import type { AnyZodObject, z } from "zod";
 import { get, writable, type Writable } from "svelte/store";
-import { createFieldActions, createFieldHandlers } from "@/lib/internal/index.js";
-import type { ErrorsStore, GetFieldAttrsProps } from "@/lib/internal/index.js";
+import { createFieldActions, createFieldHandlers } from "$lib/internal/index.js";
+import type { ErrorsStore, GetFieldAttrsProps } from "$lib/internal/index.js";
 import type { CreateFormFieldReturn, FieldAttrStore, FieldContext, FieldIds } from "./types.js";
 import { setContext } from "svelte";
 

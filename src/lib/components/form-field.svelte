@@ -1,14 +1,9 @@
 <script lang="ts">
 	import { formFieldProxy } from "sveltekit-superforms/client";
 	import { writable } from "svelte/store";
-	import { createFormField, createIds } from "@/lib/internal/index.js";
+	import { createFormField, createIds } from "$lib/internal/index.js";
 
-	import type {
-		FieldAttrStore,
-		Form,
-		FormFieldName,
-		FormValidation
-	} from "@/lib/internal/index.js";
+	import type { FieldAttrStore, Form, FormFieldName, FormValidation } from "$lib/internal/index.js";
 	import type { AnyZodObject } from "zod";
 
 	type T = $$Generic<AnyZodObject | FormValidation>;
